@@ -199,6 +199,7 @@ if not addon.getSetting("html5MessageShown"):
 
 def index():
     if login():
+        addDir(translation(30002), urlMain+"/MyList?leid=595&link=seeall", 'listVideos', "", "both")
         addDir(translation(30011), "", 'main', "", "movie")
         addDir(translation(30012), "", 'main', "", "tv")
         addDir(translation(30143), "", 'wiHome', "", "both")
@@ -428,7 +429,7 @@ def listVideo(videoID, title, thumbUrl, tvshowIsEpisode, hideMovies, type):
     if browseTvShows and videoType == "tvshow":
         nextMode = "listSeasons"
     added = False
-    if "/MyList" in url and videoTypeTemp==type:
+    if "/MyList" in url and (videoTypeTemp==type or type=="both"):
         addVideoDirR(title, videoID, nextMode, thumbUrl, videoType, desc, duration, year, mpaa, director, genre, rating)
         added = True
     elif videoType == "movie" and hideMovies:
